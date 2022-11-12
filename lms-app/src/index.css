@@ -11,3 +11,68 @@ code {
   font-family: source-code-pro, Menlo, Monaco, Consolas, 'Courier New',
     monospace;
 }
+
+* {
+  margin: 0;
+  padding: 0;
+  box-sizing: border-box;
+}
+
+input,
+button {
+  border: 1px solid #CECECE;
+}
+
+.App {
+  height: 100vh;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  background-color: #fff;
+}
+
+form .form-inner {
+  background-color: #fff;
+}
+
+form .form-inner h2 {
+  color: #888;
+  font-size: 28px;
+  font-weight: 500;
+  margin-bottom: 15px;
+}
+
+form .form-inner p {
+  margin-bottom: 15px;
+}
+
+form .form-inner .form-group {
+  width: 300px;
+  margin-bottom: 15px;
+}
+
+.form-inner .form-group label {
+  color: #666;
+  font-size: 16px;
+}
+
+form .form-inner .form-group input {
+  width: 100%;
+  padding: 10px 15px;
+  background-color: #fff;
+  border-radius: 8px;
+}
+
+form .form-inner input[type="submit"] {
+  padding: 10px 15px;
+  background: #ED7966;
+  border-radius: 5px;
+  color: #fff;
+  font-weight: 700;
+}
+
+.form-tab {
+  display: flex;
+  gap: 15px;
+  margin-bottom: 20px;
+}

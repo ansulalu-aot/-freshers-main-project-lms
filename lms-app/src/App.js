@@ -26,7 +26,7 @@ function App() {
     <div className="App">
       {(user.email !== "") ? (
         <div className='welcome'>
-          <h2>welcome</h2>
+          
         </div>
       ) : (
         <LoginForm Login={Login} error={error} />
