@@ -12,8 +12,8 @@ function LoginForm({ Login, error }) {
                 <h2>Login</h2>
                 <p>Welcome back! Please enter your details.</p>
                 <div className='form-tab'>
-                    <a href='#Admin' style={{textDecoration:"none"}}>Admin</a>
-                    <a href='#Student' style={{textDecoration:"none"}}>Student</a>
+                    <a href='/Admin' style={{textDecoration:"none"}}>Admin</a>
+                    <a href='/Student' style={{textDecoration:"none"}}>Student</a>
                 </div>
                 {(error !== "") ? (<div className='error'>{error}</div>) : ""}
                 <div className='form-group'>

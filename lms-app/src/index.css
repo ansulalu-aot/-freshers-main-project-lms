@@ -9,7 +9,7 @@ input, button {
   border: 1px solid #CECECE;
 }
 
-.App {
+form {
   height: 100vh;
   display: flex;
   align-items: center;
@@ -71,10 +71,15 @@ form .form-inner input[type="submit"] {
   display: flex;
   gap: 15px;
   margin-bottom: 20px;
+  border-top:none ;
+  border-left:none;
+  border-right:none;
+  border-bottom:1px solid #E3E3E3;
 }
 .form-tab  a{
   font-weight: 500;
   font-size: 14px;
   line-height: 17px;
   color: #09174A;
+  padding-bottom: 5px;
 }

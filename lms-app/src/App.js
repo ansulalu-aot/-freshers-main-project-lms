@@ -1,5 +1,17 @@
 import React, { useState } from 'react'
 import LoginForm from './components/LoginForm'
+import {
+  BrowserRouter as Router,
+  Switch,
+  Route,
+  Routes,
+  Link,
+  BrowserRouter
+} from "react-router-dom";
+import Dashboard from './Dashboard/Dashboard';
+import Issuedbooks from './Dashboard/Issuedbooks';
+import Students from './Dashboard/Students';
+import Allbooks from './Dashboard/Allbooks';
 
 function App() {
   const adminUser = {
@@ -8,11 +20,12 @@ function App() {
   }
   const [user, setUser] = useState({ email: "", password: "" })
   const [error, setError] = useState("")
-
+  const [authCheck, setauthCheck] = useState(false);
   const Login = details => {
     console.log(details)
     if (details.email === adminUser.email && details.password === adminUser.password) {
       console.log("logged in")
+      setauthCheck(true)
       setUser({
         email: details.email,
         password: details.password
@@ -23,14 +36,33 @@ function App() {
     }
   }
   return (
-    <div className="App">
-      {(user.email !== "") ? (
+    <div>
+      {/* {(user.email !== "") ? (
         <div className='welcome'>
           
         </div>
       ) : (
         <LoginForm Login={Login} error={error} />
-      )}
+      )} */}
+
+      <Router>
+        {!authCheck && (
+          <LoginForm
+            Login={Login} error={error}
+            authCheck={authCheck}
+            setauthCheck={setauthCheck}
+          />
+        )}
+
+        <div className="d-flex">
+          {authCheck && <Dashboard />}
+          <Routes>
+            <Route path="/students" element={authCheck && <Students/>} />
+             <Route path="/allbooks" element={authCheck && <Allbooks/>} />
+            <Route path="/issuedbooks" element={<Issuedbooks />} />
+          </Routes>
+        </div>
+      </Router>
     </div>
   )
 }
