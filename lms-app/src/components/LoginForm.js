@@ -1,4 +1,5 @@
 import React, { useState } from 'react'
+import Lmsheader2 from "./Vector (1).png"
 
 function LoginForm({ Login, error }) {
     const [details, setDetails] = useState({ email: "", password: "" })
@@ -7,7 +8,12 @@ function LoginForm({ Login, error }) {
         Login(details)
     }
     return (
-        <form onSubmit={submitHandler}>
+        <>
+        <div className='d-flex m-5'>
+                            <img src={Lmsheader2} alt="LMS" style={{ width: "45px", height: "51.37px"}}/>
+                            <h1 className='px-3' style={{ width: "50px", height: "50px",color:"#ED7966" }}>LMS</h1>
+                        </div>
+        <form className="form" onSubmit={submitHandler}>
             <div className='form-inner'>
                 <h2>Login</h2>
                 <p>Welcome back! Please enter your details.</p>
@@ -27,6 +33,7 @@ function LoginForm({ Login, error }) {
                 <input type='submit' value="Login" />
             </div>
         </form>
+        </>
     )
 }
 

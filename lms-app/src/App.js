@@ -2,11 +2,8 @@ import React, { useState } from 'react'
 import LoginForm from './components/LoginForm'
 import {
   BrowserRouter as Router,
-  Switch,
   Route,
-  Routes,
-  Link,
-  BrowserRouter
+  Routes
 } from "react-router-dom";
 import Dashboard from './Dashboard/Dashboard';
 import Issuedbooks from './Dashboard/Issuedbooks';
@@ -18,7 +15,7 @@ function App() {
     email: "admin@gmail.com",
     password: "admin123"
   }
-  const [user, setUser] = useState({ email: "", password: "" })
+  const [, setUser] = useState({ email: "", password: "" })
   const [error, setError] = useState("")
   const [authCheck, setauthCheck] = useState(false);
   const Login = details => {
@@ -37,14 +34,6 @@ function App() {
   }
   return (
     <div>
-      {/* {(user.email !== "") ? (
-        <div className='welcome'>
-          
-        </div>
-      ) : (
-        <LoginForm Login={Login} error={error} />
-      )} */}
-
       <Router>
         {!authCheck && (
           <LoginForm
@@ -58,8 +47,8 @@ function App() {
           {authCheck && <Dashboard />}
           <Routes>
             <Route path="/students" element={authCheck && <Students/>} />
-             <Route path="/allbooks" element={authCheck && <Allbooks/>} />
-            <Route path="/issuedbooks" element={<Issuedbooks />} />
+            <Route path="/allbooks" element={authCheck && <Allbooks/>} />
+            <Route path="/issuedbooks" element={authCheck && <Issuedbooks />} />
           </Routes>
         </div>
       </Router>

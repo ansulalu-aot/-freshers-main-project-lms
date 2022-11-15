@@ -5,23 +5,24 @@
   font-style: normal;
 }
 
-input, button {
+input {
   border: 1px solid #CECECE;
 }
 
-form {
+.form {
   height: 100vh;
   display: flex;
   align-items: center;
   justify-content: center;
   background-color: #fff;
+  margin-top: -150px;
 }
 
-form .form-inner {
+.form .form-inner {
   background-color: #fff;
 }
 
-form .form-inner h2 {
+.form .form-inner h2 {
   font-weight: 700;
   font-size: 24px;
   line-height: 29px;
@@ -29,7 +30,7 @@ form .form-inner h2 {
   margin-bottom: 15px;
 }
 
-form .form-inner p {
+.form .form-inner p {
   font-weight: 500;
   font-size: 16px;
   line-height: 19px;
@@ -37,7 +38,7 @@ form .form-inner p {
   margin-bottom: 15px;
 }
 
-form .form-inner .form-group {
+.form .form-inner .form-group {
   width: 300px;
   margin-bottom: 15px;
 }
@@ -49,7 +50,7 @@ form .form-inner .form-group {
   color: #09174A;
 }
 
-form .form-inner .form-group input {
+.form .form-inner .form-group input {
   width: 100%;
   padding: 10px 15px;
   font-weight: 500;
@@ -59,7 +60,7 @@ form .form-inner .form-group input {
   border-radius: 8px;
 }
 
-form .form-inner input[type="submit"] {
+.form .form-inner input[type="submit"] {
   padding: 10px 130px;
   background: #ED7966;
   border-radius: 5px;
@@ -67,19 +68,80 @@ form .form-inner input[type="submit"] {
   font-weight: 700;
 }
 
-.form-tab{
+.form-tab {
   display: flex;
   gap: 15px;
   margin-bottom: 20px;
-  border-top:none ;
-  border-left:none;
-  border-right:none;
-  border-bottom:1px solid #E3E3E3;
+  border-top: none;
+  border-left: none;
+  border-right: none;
+  border-bottom: 1px solid #E3E3E3;
 }
-.form-tab  a{
+
+.form-tab a {
   font-weight: 500;
   font-size: 14px;
   line-height: 17px;
   color: #09174A;
   padding-bottom: 5px;
+}
+
+.sidebar {
+  background: #ED7966;
+  color: #fff;
+  height: 100vh;
+  transition: all 0.5s;
+  overflow: hidden;
+}
+
+.button1 {
+  background-color: #ED7966 !important;
+  border-radius: 5px !important;
+  border: none !important;
+  padding: 10px 20px !important;
+}
+
+.button2 {
+  padding: 10px 38px !important;
+  background-color: #FFFFFF !important;
+  color: #7E7E7F !important;
+  border-radius: 5px !important;
+  border: 1px solid #CECECE !important;
+}
+
+.button3 {
+  padding: 10px 38px !important;
+  background-color: #ED7966 !important;
+  border-radius: 5px !important;
+  border: none !important;
+}
+
+.search {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  gap: 50px;
+}
+
+Table tbody tr {
+  border: 1px solid #E3E3E3 !important;
+  border-top: none !important;
+  border-left: none !important;
+  border-right: none !important;
+}
+
+Table tbody tr td {
+  font-weight: 500;
+  font-size: 16px;
+  line-height: 20px;
+  color: #09174A;
+}
+Table thead tr th{
+font-weight: 500;
+font-size: 16px;
+line-height: 20px;
+color: #646464;
+}
+.trash{
+  color: #D04444 !important;
 }
