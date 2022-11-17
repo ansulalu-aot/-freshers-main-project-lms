@@ -12,7 +12,7 @@ function Issueedit() {
 
     return (
         <>
-            <MdEdit onClick={handleShow}/>
+            <MdEdit className='edit' onClick={handleShow}/>
             <Modal show={show} onHide={handleClose}>
                 <Modal.Header closeButton>
                     <Modal.Title>Issue Book</Modal.Title>

@@ -5,7 +5,7 @@ import Issuemodal from '../Modals/Issuebook';
 function Issuedbooks() {
     return (
         <>
-            <div className='text-nowrap p-5'>
+            <div className='container text-nowrap p-5'>
                 <h5>Issued Books</h5>
                 <hr/>
                 <div className='search'><input className="form-control my-5" style={{ width: "600px" }} type="search" placeholder="Search by book title or student" aria-label="Search" />

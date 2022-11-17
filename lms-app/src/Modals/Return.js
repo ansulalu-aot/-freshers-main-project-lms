@@ -11,7 +11,7 @@ function Returnbook() {
 
   return (
     <>
-      <MdOutlineAssignmentReturn onClick={handleShow}/>
+      <MdOutlineAssignmentReturn className='edit' onClick={handleShow}/>
       <Modal show={show} onHide={handleClose}>
         <Modal.Header className='border border-0' closeButton>
           <Modal.Title style={{paddingLeft:"150px"}}>Mark as returned</Modal.Title>

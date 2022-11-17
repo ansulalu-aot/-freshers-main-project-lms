@@ -1,4 +1,4 @@
-import React, { useState } from 'react'
+import React, { useState , createContext } from 'react'
 import LoginForm from './components/LoginForm'
 import {
   BrowserRouter as Router,
@@ -10,19 +10,26 @@ import Issuedbooks from './Dashboard/Issuedbooks';
 import Students from './Dashboard/Students';
 import Allbooks from './Dashboard/Allbooks';
 
+const BookContext = createContext();
+const StudentContext = createContext()
+
 function App() {
+
+  const [book, setBook] = useState([]);
+  const [student, setStudent] = useState([])
+
   const adminUser = {
     email: "admin@gmail.com",
     password: "admin123"
   }
   const [, setUser] = useState({ email: "", password: "" })
   const [error, setError] = useState("")
-  const [authCheck, setauthCheck] = useState(false);
+  const [check, setCheck] = useState(false);
   const Login = details => {
     console.log(details)
     if (details.email === adminUser.email && details.password === adminUser.password) {
       console.log("logged in")
-      setauthCheck(true)
+      setCheck(true)
       setUser({
         email: details.email,
         password: details.password
@@ -34,25 +41,29 @@ function App() {
   }
   return (
     <div>
+      <BookContext.Provider value={[book, setBook]}><StudentContext.Provider value={[student, setStudent]}>
       <Router>
-        {!authCheck && (
+        {!check && (
           <LoginForm
             Login={Login} error={error}
-            authCheck={authCheck}
-            setauthCheck={setauthCheck}
+            check={check}
+            setCheck={setCheck}
           />
         )}
 
         <div className="d-flex">
-          {authCheck && <Dashboard />}
+          {check && <Dashboard />}
           <Routes>
-            <Route path="/students" element={authCheck && <Students/>} />
-            <Route path="/allbooks" element={authCheck && <Allbooks/>} />
-            <Route path="/issuedbooks" element={authCheck && <Issuedbooks />} />
+            <Route path="/issuedbooks" element={check && <Issuedbooks />} />
+            <Route path="/allbooks" element={check && <Allbooks />} />
+            <Route path="/students" element={check && <Students />} />
           </Routes>
         </div>
       </Router>
+      </StudentContext.Provider></BookContext.Provider>
     </div>
   )
 }
 export default App
+export {BookContext}
+export {StudentContext}

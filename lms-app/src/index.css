@@ -136,12 +136,26 @@ Table tbody tr td {
   line-height: 20px;
   color: #09174A;
 }
-Table thead tr th{
-font-weight: 500;
-font-size: 16px;
-line-height: 20px;
-color: #646464;
+
+Table thead tr th {
+  font-weight: 500;
+  font-size: 16px;
+  line-height: 20px;
+  color: #646464;
 }
-.trash{
+
+.trash {
   color: #D04444 !important;
+}
+
+.edit {
+  color: #7E7E7F !important;
+}
+
+.container {
+  background: #FFFBFA;
+}
+
+Table {
+  background: #FFFFFF;
 }
