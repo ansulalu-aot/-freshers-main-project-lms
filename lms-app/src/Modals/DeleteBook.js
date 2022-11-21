@@ -22,9 +22,9 @@ function Delete({keybook}) {
             <TbTrash className='trash' onClick={handleShow} />
             <Modal show={show} onHide={handleClose}>
                 <Modal.Header className='border border-0' closeButton>
-                    <Modal.Title style={{ paddingLeft: "200px" }}>Delete</Modal.Title>
+                    <Modal.Title style={{ paddingLeft: "170px" }}>Delete book</Modal.Title>
                 </Modal.Header>
-                <Modal.Body className='text-center'>Are you sure to delete this?</Modal.Body>
+                <Modal.Body className='text-center'>Are you sure to delete this book?</Modal.Body>
                 <Modal.Footer className="justify-content-center border border-0 gap-3 ">
                     <Button className='button2' onClick={handleClose}>
                         No

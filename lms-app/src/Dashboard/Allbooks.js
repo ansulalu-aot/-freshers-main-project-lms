@@ -7,7 +7,7 @@ import { BookContext } from '../App';
 import Delete from '../Modals/DeleteBook';
 
 function Allbooks() {
-    const [book, ] = useContext(BookContext)
+    const [book,] = useContext(BookContext)
     return (
         <>
             <div className='container text-nowrap p-5'>
@@ -37,8 +37,15 @@ function Allbooks() {
                                     <td>{index.total}</td>
                                     <td>{index.remaining}</td>
                                     <td className='d-flex gap-2  border-0'>
-                                        <Bookedit />
-                                        <Delete keybook={index.bookid}/>
+                                        <Bookedit
+                                            editid={index.bookid}
+                                            nameEdit={index.name}
+                                            authorEdit={index.author}
+                                            languageEdit={index.language}
+                                            totalEdit={index.total}
+                                            remainingEdit={index.remaining}
+                                        />
+                                        <Delete keybook={index.bookid} />
                                     </td>
                                 </tr>
                             </tbody>

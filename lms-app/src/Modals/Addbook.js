@@ -31,7 +31,11 @@ function Addmodal() {
         }
         setBook([...book,newBook])
         console.log(book,newBook)
-        // setArray("")
+        setName("")
+        setAuthor("")
+        setLanguage("")
+        setTotal("")
+        setRemaining("")
     }
 
     return (

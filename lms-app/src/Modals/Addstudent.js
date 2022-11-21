@@ -26,7 +26,10 @@ function AddStudent() {
         }
         setStudent([...student,newStudent])
         console.log(student,newStudent)
-        // setArray1("")
+        setName("")
+        setEmail("")
+        setPassword("")
+        setConfirm("")
     }
     
     return (
