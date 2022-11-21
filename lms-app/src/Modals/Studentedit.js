@@ -4,9 +4,9 @@ import Form from 'react-bootstrap/Form';
 import Modal from 'react-bootstrap/Modal';
 import { MdEdit } from 'react-icons/md';
 import { StudentContext } from '../App';
-import { nanoid } from 'nanoid'
+// import { nanoid } from 'nanoid'
 
-function Studentedit({ editid, nameEdit, emailEdit, passwordEdit, confirmEdit }) {
+function Studentedit({ keystudent, nameEdit, emailEdit, passwordEdit, confirmEdit }) {
     const [show, setShow] = useState(false);
 
     const handleClose = () => setShow(false);
@@ -20,29 +20,20 @@ function Studentedit({ editid, nameEdit, emailEdit, passwordEdit, confirmEdit })
     const [confirm, setConfirm] = useState(confirmEdit)
 
     const handleSubmit = () => {
-        const newStudent = {
-            studentid : nanoid(),
-            name:name,
-            email:email,
-            password:password,
-            confirm:confirm
-        }
-        setStudent([...student,newStudent])
-        console.log(student,newStudent)
-        // setStudent(
-        //     student.map((student) => {
-        //         if (student.studentid === editid) {
-        //             return {
-        //                 ...student,
-        //                 name: nameEdit,
-        //                 email: emailEdit,
-        //                 password: passwordEdit,
-        //                 confirm: confirmEdit
-        //             }
-        //         }
-        //         return student;
-        //     })
-        // )
+        setStudent(
+            student.map((student) => {
+                if (student.studentid === keystudent) {
+                    return {
+                        ...student,
+                        name: name,
+                        email: email,
+                        password: password,
+                        confirm: confirm
+                    }
+                }
+                return student;
+            })
+        )
     }
 
     return (

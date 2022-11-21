@@ -36,7 +36,7 @@ function Student() {
                                     <td>{index.email}</td>
                                     <td className='d-flex gap-2  border-0'>
                                         <Studentedit
-                                            editid={index.studentid}
+                                            keystudent={index.studentid}
                                             nameEdit={index.name}
                                             emailEdit={index.email}
                                             passwordEdit={index.password}

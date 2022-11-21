@@ -5,10 +5,10 @@ import Modal from 'react-bootstrap/Modal';
 import { MdEdit } from 'react-icons/md';
 import Col from 'react-bootstrap/Col';
 import Row from 'react-bootstrap/Row';
-import { nanoid } from 'nanoid'
+// import { nanoid } from 'nanoid'
 import { BookContext } from '../App';
 
-function Bookedit({ editid, nameEdit, authorEdit, languageEdit, totalEdit, remainingEdit }) {
+function Bookedit({keybook, nameEdit, authorEdit, languageEdit, totalEdit, remainingEdit }) {
     const [show, setShow] = useState(false);
 
     const handleClose = () => setShow(false);
@@ -22,31 +22,19 @@ function Bookedit({ editid, nameEdit, authorEdit, languageEdit, totalEdit, remai
     const [remaining, setRemaining] = useState(remainingEdit)
 
     const handleSubmit = () => {
-        const newBook = {
-            bookid : nanoid(),
-            name:name,
-            author:author,
-            language:language,
-            total:total,
-            remaining:remaining
-        }
-        setBook([...book,newBook])
-        console.log(book,newBook)
-        // setBook(
-        //     book.map((book) => {
-        //         if (book.bookid === editid) {
-        //             return {
-        //                 ...book,
-        //                 name: nameEdit,
-        //                 author: authorEdit,
-        //                 language: languageEdit,
-        //                 total: totalEdit,
-        //                 remaining: remainingEdit
-        //             }
-        //         }
-        //         return book;
-        //     })
-        // )
+        setBook(
+            book.map((book) => {
+                if (book.bookid === keybook) {
+                    return {
+                        ...book, 
+                        name: name, author: author, language: language, total: total, remaining: remaining
+                    }
+                }
+                return book;
+            })
+        )
+        console.log(keybook)
+        console.log(book)
     }
 
     return (

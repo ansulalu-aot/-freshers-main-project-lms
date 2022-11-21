@@ -14,7 +14,7 @@ function Allbooks() {
                 <h5>All Books</h5>
                 <hr />
                 <div className='search'>
-                    <input className="form-control my-5" style={{ width: "600px" }} type="search" placeholder="Search by book title or author" aria-label="Search" />
+                    <input className="form-control my-5" style={{ width: "600px" }} type="search" placeholder="Search by book title or author" aria-label="Search"/>
                     <Addmodal /></div>
                 <Table hover >
                     <thead>
@@ -38,7 +38,7 @@ function Allbooks() {
                                     <td>{index.remaining}</td>
                                     <td className='d-flex gap-2  border-0'>
                                         <Bookedit
-                                            editid={index.bookid}
+                                            keybook={index.bookid}
                                             nameEdit={index.name}
                                             authorEdit={index.author}
                                             languageEdit={index.language}
