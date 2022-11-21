@@ -1,42 +1,22 @@
-import React, { useState , useContext } from 'react';
+import React, { useState  } from 'react';
 import Button from 'react-bootstrap/Button';
 import Form from 'react-bootstrap/Form';
 import Modal from 'react-bootstrap/Modal';
-import { StudentContext } from '../App';
-import { nanoid } from 'nanoid'
+import { MdEdit } from 'react-icons/md';
 
-function AddStudent() {
+function Studentedit() {
     const [show, setShow] = useState(false);
 
     const handleClose = () => setShow(false);
     const handleShow = () => setShow(true);
-    // const [array1, setArray1] = useState([{ name: "", email: "", password: "", confirm: ""}])
-    const [name, setName] = useState("")
-    const [email, setEmail] = useState("")
-    const [password, setPassword] = useState("")
-    const [confirm, setConfirm] = useState("")
-    const [student,setStudent] = useContext(StudentContext)
-    const handleSubmit = () => {
-        const newStudent = {
-            studentid : nanoid(),
-            name: name,
-            email: email,
-            password: password,
-            confirm: confirm
-        }
-        setStudent([...student,newStudent])
-        console.log(student,newStudent)
-        // setArray1("")
-    }
+    
     
     return (
         <>
-            <Button className='button1' onClick={handleShow}>
-                Add New Student
-            </Button>
+            <MdEdit className='edit' onClick={handleShow}/>
             <Modal show={show} onHide={handleClose}>
                 <Modal.Header closeButton>
-                    <Modal.Title>Add Student</Modal.Title>
+                    <Modal.Title>Edit Student</Modal.Title>
                 </Modal.Header>
                 <Modal.Body>
                     <Form>
@@ -45,9 +25,9 @@ function AddStudent() {
                             <Form.Control
                                 type="text"
                                 name="name"
-                                value={name}
+                                
                                 placeholder="Eg: John Doe"
-                                onChange={(e) => setName( e.target.value )}
+                                
                             />
                         </Form.Group>
                         <Form.Group
@@ -58,9 +38,9 @@ function AddStudent() {
                             <Form.Control
                                 type="email"
                                 name="email"
-                                value={email}
+                                
                                 placeholder="Eg: johndoe@gmail.com"
-                                onChange={(e) => setEmail(e.target.value )} />
+                                 />
                         </Form.Group>
                         <Form.Group
                             className="mb-3"
@@ -70,8 +50,8 @@ function AddStudent() {
                             <Form.Control
                                 type="password"
                                 name="password"
-                                value={password}
-                                onChange={(e) => setPassword( e.target.value )}
+                                
+                                
                                 />
                         </Form.Group>
                         <Form.Group
@@ -82,8 +62,7 @@ function AddStudent() {
                             <Form.Control
                                 type="password"
                                 name="password"
-                                value={confirm}
-                                onChange={(e) => setConfirm(e.target.value )}
+                               
                                  />
                         </Form.Group>
                         
@@ -93,8 +72,8 @@ function AddStudent() {
                     <Button className='button2' onClick={handleClose}>
                         Cancel
                     </Button>
-                    <Button className='button3'  onClick={() => { handleClose(); handleSubmit() }}>
-                        Add Student
+                    <Button className='button3'  onClick={  handleClose}>
+                        Edit Student
                     </Button>
                 </Modal.Footer>
             </Modal>
@@ -102,4 +81,4 @@ function AddStudent() {
     );
 }
 
-export default AddStudent;
+export default Studentedit;

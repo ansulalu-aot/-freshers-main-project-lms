@@ -1,51 +1,26 @@
-import React, { useState , useContext} from 'react';
+import React, { useState } from 'react';
 import Button from 'react-bootstrap/Button';
 import Form from 'react-bootstrap/Form';
 import Modal from 'react-bootstrap/Modal';
+import { MdEdit } from 'react-icons/md';
 import Col from 'react-bootstrap/Col';
 import Row from 'react-bootstrap/Row';
-import { BookContext } from '../App';
-import { nanoid } from 'nanoid'
 
-function Addmodal() {
+function Bookedit() {
     const [show, setShow] = useState(false);
 
     const handleClose = () => setShow(false);
     const handleShow = () => setShow(true);
 
-    // const [array, setArray] = useState([{bookid:"", name: "", author: "", language: "", total: "", remaining: "" }])
-    const [name, setName] = useState("")
-    const [author, setAuthor] = useState("")
-    const [language, setLanguage] = useState("")
-    const [total, setTotal] = useState("")
-    const [remaining, setRemaining] = useState("")
-    const [book,setBook] = useContext(BookContext)
-    const handleSubmit = () => {
-        const newBook = {
-            bookid : nanoid(),
-            name:name,
-            author:author,
-            language:language,
-            total:total,
-            remaining:remaining
-        }
-        setBook([...book,newBook])
-        console.log(book,newBook)
-        // setArray("")
-    }
-
     return (
         <>
-            <Button className='button1' onClick={handleShow}>
-                Add New Book
-            </Button>
-
+            <MdEdit className='edit' onClick={handleShow}/>
             <Modal show={show} onHide={handleClose}>
                 <Modal.Header closeButton>
-                    <Modal.Title>Add Book</Modal.Title>
+                    <Modal.Title>Edit Book</Modal.Title>
                 </Modal.Header>
                 <Modal.Body>
-                    <Form>
+                <Form>
                         <Form.Group className="mb-3"
                         // controlId="exampleForm.ControlInput2"
                         >
@@ -53,9 +28,9 @@ function Addmodal() {
                             <Form.Control
                                 type="text"
                                 name="name"                               
-                                value={name}
+                               
                                 placeholder="Eg: Pride and Prejudice"
-                                onChange={(e) => setName( e.target.value )}
+                                
                             />
                         </Form.Group>
                         <Form.Group
@@ -66,12 +41,12 @@ function Addmodal() {
                             <Form.Control
                                 type="text"
                                 name="author"                            
-                                value={author}
+                                
                                 placeholder="Eg: Jane Austen"
-                                onChange={(e) => setAuthor(e.target.value )} />
+                                 />
                         </Form.Group>
                         <Form.Label>Language</Form.Label>
-                        <Form.Select className="mb-3" aria-label="Default select example" value={language} onChange={(e) => setLanguage(e.target.value )} >
+                        <Form.Select className="mb-3" aria-label="Default select example" >
                             <option>Select Language</option>
                             <option >English</option>
                             <option >Spanish</option>
@@ -82,15 +57,15 @@ function Addmodal() {
                             //  controlId="validationCustom01"
                             >
                                 <Form.Label>Total Copies</Form.Label>
-                                <Form.Control type="number" placeholder="5" name="total" value={total}
-                                    onChange={(e) => setTotal(e.target.value )} />
+                                <Form.Control type="number" placeholder="5" name="total" 
+                                   />
                             </Form.Group>
                             <Form.Group as={Col} md="6"
                             //  controlId="validationCustom02"
                             >
                                 <Form.Label>Remaining</Form.Label>
-                                <Form.Control type="number" placeholder="2" name="remaining"  value={remaining}
-                                    onChange={(e) => setRemaining(e.target.value )} />
+                                <Form.Control type="number" placeholder="2" name="remaining"  
+                                    />
                             </Form.Group>
                         </Row>
                     </Form>
@@ -99,8 +74,8 @@ function Addmodal() {
                     <Button className='button2' onClick={handleClose}>
                         Cancel
                     </Button>
-                    <Button className='button3' onClick={() => { handleClose(); handleSubmit() }}>
-                        Add Book
+                    <Button className='button3' onClick={handleClose}>
+                        Edit Book
                     </Button>
                 </Modal.Footer>
             </Modal>
@@ -108,6 +83,4 @@ function Addmodal() {
     );
 }
 
-export default Addmodal;
-
-
+export default Bookedit;

@@ -12,11 +12,13 @@ import Allbooks from './Dashboard/Allbooks';
 
 const BookContext = createContext();
 const StudentContext = createContext()
+const IssueContext = createContext()
 
 function App() {
 
   const [book, setBook] = useState([]);
   const [student, setStudent] = useState([])
+  const [issue, setIssue] = useState([])
 
   const adminUser = {
     email: "admin@gmail.com",
@@ -41,7 +43,7 @@ function App() {
   }
   return (
     <div>
-      <BookContext.Provider value={[book, setBook]}><StudentContext.Provider value={[student, setStudent]}>
+      <BookContext.Provider value={[book, setBook]}><StudentContext.Provider value={[student, setStudent]}><IssueContext.Provider value={[issue, setIssue]}>
       <Router>
         {!check && (
           <LoginForm
@@ -60,10 +62,11 @@ function App() {
           </Routes>
         </div>
       </Router>
-      </StudentContext.Provider></BookContext.Provider>
+      </IssueContext.Provider></StudentContext.Provider></BookContext.Provider>
     </div>
   )
 }
 export default App
 export {BookContext}
 export {StudentContext}
+export {IssueContext}

@@ -1,15 +1,18 @@
-import React from 'react'
+import React, {useContext} from 'react'
 import Table from 'react-bootstrap/Table';
 import Returnbook from '../Modals/Return';
 import Issuemodal from '../Modals/Issuebook';
+import { IssueContext } from '../App';
+
 function Issuedbooks() {
+    const [issue,] = useContext(IssueContext)
     return (
         <>
             <div className='container text-nowrap p-5'>
                 <h5>Issued Books</h5>
-                <hr/>
+                <hr />
                 <div className='search'><input className="form-control my-5" style={{ width: "600px" }} type="search" placeholder="Search by book title or student" aria-label="Search" />
-                <Issuemodal/></div>
+                    <Issuemodal /></div>
                 <Table hover>
                     <thead>
                         <tr>
@@ -22,16 +25,20 @@ function Issuedbooks() {
                             <th>Actions</th>
                         </tr>
                     </thead>
-                    <tbody>
-                        <tr>
-                            <td>It Start With Us</td>
-                            <td>Nitha Samuel</td>
-                            <td>02-11-2022</td>
-                            <td>09-11-2022</td>
-                            <td>10</td>
-                            <td><Returnbook/></td>
-                        </tr>
-                    </tbody>
+                    {issue.map((index) => {
+                        return (
+                            <tbody>
+                                <tr>
+                                    <td>{index.book}</td>
+                                    <td>{index.student}</td>
+                                    <td>{index.issue}</td>
+                                    <td>{index.due}</td>
+                                    <td>10</td>
+                                    <td><Returnbook /></td>
+                                </tr>
+                            </tbody>
+                        )
+                    })}
                 </Table>
             </div>
         </>

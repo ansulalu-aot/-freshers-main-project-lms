@@ -1,11 +1,13 @@
 import React ,{useContext} from 'react'
 import Table from 'react-bootstrap/Table';
 // import View from './View';
-import { TbTrash } from "react-icons/tb";
-import { MdEdit } from 'react-icons/md';
+// import { TbTrash } from "react-icons/tb";
+// import { MdEdit } from 'react-icons/md';
 import { GrView } from "react-icons/gr";
 import AddStudent from '../Modals/Addstudent';
 import { StudentContext } from '../App';
+import Studentedit from '../Modals/Studentedit';
+import Delete from '../Modals/DeleteBook';
 
 function Student() {
     const [student, ] = useContext(StudentContext)
@@ -28,13 +30,13 @@ function Student() {
                     </thead>
                     {student.map((index) => {
                         return (
-                    <tbody>
+                    <tbody align="justify" key={index.studentid}>
                         <tr>
                             <td>{index.name}</td>
                             <td>{index.email}</td>
                             <td className='d-flex gap-2  border-0'>
-                                <MdEdit className='edit'/>
-                                <TbTrash className='trash'/>
+                                <Studentedit/>
+                                <Delete keystudent={index.studentid}/>
                                 <GrView className='edit'/>
                                 {/* <View/> */}
                             </td>

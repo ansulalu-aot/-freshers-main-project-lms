@@ -1,10 +1,10 @@
 import React, { useContext } from 'react'
 import Table from 'react-bootstrap/Table';
-import { TbTrash } from "react-icons/tb";
-import Issueedit from '../Modals/Issueedit';
+// import { TbTrash } from "react-icons/tb";
+import Bookedit from '../Modals/Bookedit';
 import Addmodal from '../Modals/Addbook';
 import { BookContext } from '../App';
-
+import Delete from '../Modals/DeleteBook';
 
 function Allbooks() {
     const [book, ] = useContext(BookContext)
@@ -29,7 +29,7 @@ function Allbooks() {
                     </thead>
                     {book.map((index) => {
                         return (
-                            <tbody>
+                            <tbody key={index.bookid}>
                                 <tr>
                                     <td>{index.name}</td>
                                     <td>{index.author}</td>
@@ -37,8 +37,8 @@ function Allbooks() {
                                     <td>{index.total}</td>
                                     <td>{index.remaining}</td>
                                     <td className='d-flex gap-2  border-0'>
-                                        <Issueedit />
-                                        <TbTrash className='trash' />
+                                        <Bookedit />
+                                        <Delete keybook={index.bookid}/>
                                     </td>
                                 </tr>
                             </tbody>
