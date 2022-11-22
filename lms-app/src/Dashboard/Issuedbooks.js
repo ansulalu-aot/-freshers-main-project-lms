@@ -27,10 +27,10 @@ function Issuedbooks() {
                     </thead>
                     {issue.map((index) => {
                         return (
-                            <tbody>
+                            <tbody key={index.issueid}>
                                 <tr>
-                                    <td>{index.book}</td>
-                                    <td>{index.student}</td>
+                                    <td>{index.books}</td>
+                                    <td>{index.students}</td>
                                     <td>{index.issues}</td>
                                     <td>{index.due}</td>
                                     <td>10</td>

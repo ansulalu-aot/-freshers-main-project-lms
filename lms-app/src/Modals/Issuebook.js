@@ -4,6 +4,8 @@ import Form from 'react-bootstrap/Form';
 import Modal from 'react-bootstrap/Modal';
 import { IssueContext } from '../App';
 import { nanoid } from 'nanoid'
+import { BookContext } from '../App';
+import { StudentContext } from '../App';
 
 function Issuemodal() {
     const [show, setShow] = useState(false);
@@ -12,23 +14,25 @@ function Issuemodal() {
     const handleShow = () => setShow(true);
 
     // const [array2, setArray2] = useState([{ book: "", student: "", issue: "", due: ""}])
-    const [book, setBook] = useState("")
-    const [student, setStudent] = useState("")
+    const [books, setBooks] = useState("")
+    const [students, setStudents] = useState("")
     const [issues, setIssues] = useState("")
     const [due, setDue] = useState("")
+    const [book ] = useContext(BookContext)
+    const [student ] = useContext(StudentContext)
     const [issue, setIssue] = useContext(IssueContext)
     const handleSubmit = () => {
         const newIssue = {
             issueid: nanoid(),
-            book: book,
-            student: student,
+            books: books,
+            students: students,
             issues: issues,
             due: due,
         }
         setIssue([...issue, newIssue])
         console.log(issue, newIssue)
-        setBook("")
-        setStudent("")
+        setBooks("")
+        setStudents("")
         setIssues("")
         setDue("")
         alert("Issued")
@@ -47,19 +51,19 @@ function Issuemodal() {
                 <Modal.Body>
                     <Form>
                         <Form.Label>Book</Form.Label>
-                        <Form.Select className="mb-3" aria-label="Default select example1" value={book} onChange={(e) => setBook(e.target.value)}>
+                        <Form.Select className="mb-3" aria-label="Default select example1" value={books} onChange={(e) => setBooks(e.target.value)}>
                             <option>Select Book</option>
-                            <option>It Start With Us</option>
-                            <option>The Breach</option>
-                            <option>The Alchemist</option>
+                            {book.map((item) => {
+                                return <option>{item.name}</option>
+                            })}
                         </Form.Select>
 
                         <Form.Label>Student</Form.Label>
-                        <Form.Select className="mb-3" aria-label="Default select example2" value={student} onChange={(e) => setStudent(e.target.value)}>
+                        <Form.Select className="mb-3" aria-label="Default select example2" value={students} onChange={(e) => setStudents(e.target.value)}>
                             <option>Select Student</option>
-                            <option>Nitha Samuel</option>
-                            <option>Anjali Thomas</option>
-                            <option>John Doe</option>
+                            {student.map((item) => {
+                                return <option>{item.name}</option>
+                            })}
                         </Form.Select>
 
                         <Form.Group
