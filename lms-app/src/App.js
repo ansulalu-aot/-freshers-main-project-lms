@@ -19,13 +19,14 @@ function App() {
   const [book, setBook] = useState([]);
   const [student, setStudent] = useState([])
   const [issue, setIssue] = useState([])
+  // const regEx = /^[A-Z0-9._%+-]+@[A-Z0-9.-]+\.[A-Z]{2,4}$/i;
 
   const adminUser = {
     email: "admin@gmail.com",
     password: "admin123"
   }
   const [, setUser] = useState({ email: "", password: "" })
-  const [error, setError] = useState("")
+  const [error, setError] = useState(false)
   const [check, setCheck] = useState(false);
   const Login = details => {
     console.log(details)
@@ -36,10 +37,18 @@ function App() {
         email: details.email,
         password: details.password
       })
+      alert("Logged in successfully")
     } else {
       console.log("details not match")
-      setError("details not match")
+      alert("Invalid username or password!")
+      setError(true)
     }
+    // if(details.password !== adminUser.password){
+    //   setError(true)
+    // }
+    // if(!regEx.test(details.email) === false ){
+    //   setError(true)
+    // }
   }
   return (
     <div>

@@ -1,4 +1,4 @@
-import React, { useContext } from 'react'
+import React, { useContext, useState } from 'react'
 import Table from 'react-bootstrap/Table';
 // import { TbTrash } from "react-icons/tb";
 import Bookedit from '../Modals/Bookedit';
@@ -8,13 +8,14 @@ import Delete from '../Modals/DeleteBook';
 
 function Allbooks() {
     const [book,] = useContext(BookContext)
+    const [search, setSearch] = useState("")
     return (
         <>
             <div className='container text-nowrap p-5'>
                 <h5>All Books</h5>
                 <hr />
                 <div className='search'>
-                    <input className="form-control my-5" style={{ width: "600px" }} type="search" placeholder="Search by book title or author" aria-label="Search"/>
+                    <input className="form-control my-5" style={{ width: "600px" }} type="search" placeholder="Search by book title or author" aria-label="Search" onChange={(e) => {setSearch(e.target.value)}} />
                     <Addmodal /></div>
                 <Table hover >
                     <thead>
@@ -27,7 +28,16 @@ function Allbooks() {
                             <th>Actions</th>
                         </tr>
                     </thead>
-                    {book.map((index) => {
+                    {book.filter((value) => {
+                        if (search === "") {
+                            return value;
+                        } else if (value.name.toLowerCase().includes(search.toLowerCase())) {
+                            return value
+                        } else if (value.author.toLowerCase().includes(search.toLowerCase())) {
+                            return value
+                        } return 0
+                    })
+                    .map((index) => {
                         return (
                             <tbody key={index.bookid}>
                                 <tr>

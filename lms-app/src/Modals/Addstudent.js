@@ -30,6 +30,7 @@ function AddStudent() {
         setEmail("")
         setPassword("")
         setConfirm("")
+        alert("Student added")
     }
     
     return (

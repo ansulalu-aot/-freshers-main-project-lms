@@ -15,6 +15,7 @@ function Delete({keybook}) {
     const handleDelete = () => {
         console.log(keybook)
         setBook(book.filter((book) => book.bookid !== keybook))
+        alert("Deleted...")
     }
 
     return (

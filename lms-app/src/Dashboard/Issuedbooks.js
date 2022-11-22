@@ -5,7 +5,7 @@ import Issuemodal from '../Modals/Issuebook';
 import { IssueContext } from '../App';
 
 function Issuedbooks() {
-    const [issue,] = useContext(IssueContext)
+    const [issue, ] = useContext(IssueContext)
     return (
         <>
             <div className='container text-nowrap p-5'>
@@ -31,7 +31,7 @@ function Issuedbooks() {
                                 <tr>
                                     <td>{index.book}</td>
                                     <td>{index.student}</td>
-                                    <td>{index.issue}</td>
+                                    <td>{index.issues}</td>
                                     <td>{index.due}</td>
                                     <td>10</td>
                                     <td><Returnbook /></td>

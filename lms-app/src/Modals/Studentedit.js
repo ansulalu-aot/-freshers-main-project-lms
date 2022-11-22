@@ -34,6 +34,7 @@ function Studentedit({ keystudent, nameEdit, emailEdit, passwordEdit, confirmEdi
                 return student;
             })
         )
+        alert("Updated...")
     }
 
     return (

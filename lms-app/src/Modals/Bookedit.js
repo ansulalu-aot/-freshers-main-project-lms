@@ -35,6 +35,7 @@ function Bookedit({keybook, nameEdit, authorEdit, languageEdit, totalEdit, remai
         )
         console.log(keybook)
         console.log(book)
+        alert("Updated...")
     }
 
     return (

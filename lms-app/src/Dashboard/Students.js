@@ -1,4 +1,4 @@
-import React, { useContext } from 'react'
+import React, { useContext, useState } from 'react'
 import Table from 'react-bootstrap/Table';
 // import View from './View';
 // import { TbTrash } from "react-icons/tb";
@@ -11,13 +11,14 @@ import DeleteStudent from '../Modals/DeleteStudent';
 
 function Student() {
     const [student,] = useContext(StudentContext)
+    const [search, setSearch] = useState("")
     return (
         <>
             <div className='container text-nowrap p-5'>
                 <h5>Students</h5>
                 <hr />
                 <div className="search">
-                    <input className="form-control my-5" style={{ width: "600px" }} type="search" placeholder="Search by student name or email" aria-label="Search" />
+                    <input className="form-control my-5" style={{ width: "600px" }} type="search" placeholder="Search by student name or email" aria-label="Search" onChange={(e) => {setSearch(e.target.value)}} />
                     <AddStudent /></div>
 
                 <Table hover>
@@ -28,7 +29,15 @@ function Student() {
                             <th>Actions</th>
                         </tr>
                     </thead>
-                    {student.map((index) => {
+                    {student.filter((value) => {
+                        if (search === "") {
+                            return value;
+                        } else if (value.name.toLowerCase().includes(search.toLowerCase())) {
+                            return value
+                        } else if (value.email.toLowerCase().includes(search.toLowerCase())) {
+                            return value
+                        } return 0
+                    }).map((index) => {
                         return (
                             <tbody align="justify" key={index.studentid}>
                                 <tr>

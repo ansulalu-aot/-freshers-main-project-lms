@@ -36,6 +36,7 @@ function Addmodal() {
         setLanguage("")
         setTotal("")
         setRemaining("")
+        alert("Book added")
     }
 
     return (
