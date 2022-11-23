@@ -35,7 +35,7 @@ function Issuemodal() {
         setStudents("")
         setIssues("")
         setDue("")
-        alert("Issued")
+        // alert("Issued")
     }
 
     return (
