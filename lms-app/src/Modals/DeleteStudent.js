@@ -15,7 +15,7 @@ function DeleteStudent({keystudent}) {
     const handleDelete = () => {
         console.log(keystudent)
         setStudent(student.filter((student) => student.studentid !== keystudent))
-        alert("Deleted...")
+        // alert("Deleted...")
     }
 
     return (

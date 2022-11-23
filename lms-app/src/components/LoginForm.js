@@ -1,7 +1,7 @@
 import React, { useState } from 'react'
 import Lmsheader2 from "./Vector (1).png"
 
-function LoginForm({ Login, error, adminUser}) {
+function LoginForm({ Login, error }) {
     // const [error, setError] = useState(false)
     const [details, setDetails] = useState({ email: "", password: "" })
     const submitHandler = (e) => {

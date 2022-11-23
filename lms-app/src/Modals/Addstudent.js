@@ -8,7 +8,7 @@ import { nanoid } from 'nanoid'
 function AddStudent() {
     const [show, setShow] = useState(false);
 
-    const handleClose = () => setShow(false);
+    const handleClose = () => {setShow(false);setError(false)}
     const handleShow = () => setShow(true);
     // const [array1, setArray1] = useState([{ name: "", email: "", password: "", confirm: ""}])
     const [name, setName] = useState("")
@@ -16,6 +16,7 @@ function AddStudent() {
     const [password, setPassword] = useState("")
     const [confirm, setConfirm] = useState("")
     const [student,setStudent] = useContext(StudentContext)
+    const [error, setError] = useState(false)
     const handleSubmit = () => {
         const newStudent = {
             studentid : nanoid(),
@@ -24,13 +25,28 @@ function AddStudent() {
             password: password,
             confirm: confirm
         }
+        if(name.length === 0 || email.length === 0 || password.length === 0 || confirm.length === 0){
+            setError(true)
+            handleShow()
+        }
+        else if(!/^[A-Z0-9._%+-]+@[A-Z0-9.-]+\.[A-Z]{2,4}$/i.test(email)){
+            setError(true);
+            handleShow()
+          }
+        else if(password !== confirm){
+            setError(true)
+            handleShow()
+        }
+        else{
         setStudent([...student,newStudent])
         console.log(student,newStudent)
         setName("")
         setEmail("")
         setPassword("")
         setConfirm("")
-        alert("Student added")
+        setError(false)
+        // alert("Student added")
+    }
     }
     
     return (
@@ -50,9 +66,10 @@ function AddStudent() {
                                 type="text"
                                 name="name"
                                 value={name}
-                                placeholder="Eg: John Doe"
+                                placeholder="Eg: John Doe" required
                                 onChange={(e) => setName( e.target.value )}
                             />
+                           { error  ? <label style={{color: "red"}} >Can't be empty </label>  : ""}
                         </Form.Group>
                         <Form.Group
                             className="mb-3"
@@ -63,8 +80,9 @@ function AddStudent() {
                                 type="email"
                                 name="email"
                                 value={email}
-                                placeholder="Eg: johndoe@gmail.com"
+                                placeholder="Eg: johndoe@gmail.com" required
                                 onChange={(e) => setEmail(e.target.value )} />
+                               { error ? <label style={{color: "red"}} >Can't be empty</label> : (!/^[A-Z0-9._%+-]+@[A-Z0-9.-]+\.[A-Z]{2,4}$/i.test(email))? <label style={{color: "red"}} >Invalid format</label> : ""}
                         </Form.Group>
                         <Form.Group
                             className="mb-3"
@@ -74,9 +92,10 @@ function AddStudent() {
                             <Form.Control
                                 type="password"
                                 name="password"
-                                value={password}
+                                value={password} required
                                 onChange={(e) => setPassword( e.target.value )}
                                 />
+                                 { error ? <label style={{color: "red"}} >Can't be empty</label>  : ""}
                         </Form.Group>
                         <Form.Group
                             className="mb-3"
@@ -86,18 +105,19 @@ function AddStudent() {
                             <Form.Control
                                 type="password"
                                 name="password"
-                                value={confirm}
+                                value={confirm} required
                                 onChange={(e) => setConfirm(e.target.value )}
-                                 />
+                                />
+                                { error&& confirm.length === 0 ? <label style={{color: "red"}} >Can't be empty</label> : (password !== confirm) ? <label style={{color: "red"}} > Password does not match </label>: ""}
                         </Form.Group>
                         
                     </Form>
                 </Modal.Body>
                 <Modal.Footer>
-                    <Button className='button2' onClick={handleClose}>
+                    <Button className='button2' onClick = {handleClose}>
                         Cancel
                     </Button>
-                    <Button className='button3'  onClick={() => { handleClose(); handleSubmit() }}>
+                    <Button className='button3'  onClick={() => {handleClose();  handleSubmit() }}>
                         Add Student
                     </Button>
                 </Modal.Footer>
