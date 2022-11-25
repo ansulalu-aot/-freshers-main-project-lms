@@ -4,18 +4,13 @@ import Modal from 'react-bootstrap/Modal';
 import { TbTrash } from 'react-icons/tb';
 import { StudentContext } from '../App';
 
-function DeleteStudent({keystudent}) {
+function DeleteStudent({ keystudent }) {
     const [show, setShow] = useState(false);
-
     const handleClose = () => setShow(false);
     const handleShow = () => setShow(true);
-
     const [student, setStudent] = useContext(StudentContext)
-    
     const handleDelete = () => {
-        console.log(keystudent)
         setStudent(student.filter((student) => student.studentid !== keystudent))
-        // alert("Deleted...")
     }
 
     return (

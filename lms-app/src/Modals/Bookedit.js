@@ -5,16 +5,13 @@ import Modal from 'react-bootstrap/Modal';
 import { MdEdit } from 'react-icons/md';
 import Col from 'react-bootstrap/Col';
 import Row from 'react-bootstrap/Row';
-// import { nanoid } from 'nanoid'
 import { BookContext } from '../App';
 
-function Bookedit({keybook, nameEdit, authorEdit, languageEdit, totalEdit, remainingEdit }) {
+function Bookedit({ keybook, nameEdit, authorEdit, languageEdit, totalEdit, remainingEdit }) {
     const [show, setShow] = useState(false);
-
     const handleClose = () => setShow(false);
     const handleShow = () => setShow(true);
     const [book, setBook] = useContext(BookContext)
-
     const [name, setName] = useState(nameEdit)
     const [author, setAuthor] = useState(authorEdit)
     const [language, setLanguage] = useState(languageEdit)
@@ -26,16 +23,13 @@ function Bookedit({keybook, nameEdit, authorEdit, languageEdit, totalEdit, remai
             book.map((book) => {
                 if (book.bookid === keybook) {
                     return {
-                        ...book, 
+                        ...book,
                         name: name, author: author, language: language, total: total, remaining: remaining
                     }
                 }
                 return book;
             })
         )
-        console.log(keybook)
-        console.log(book)
-        // alert("Updated...")
     }
 
     return (
@@ -47,9 +41,7 @@ function Bookedit({keybook, nameEdit, authorEdit, languageEdit, totalEdit, remai
                 </Modal.Header>
                 <Modal.Body>
                     <Form>
-                        <Form.Group className="mb-3"
-                        // controlId="exampleForm.ControlInput2"
-                        >
+                        <Form.Group className="mb-3">
                             <Form.Label>Name</Form.Label>
                             <Form.Control
                                 type="text"
@@ -59,10 +51,7 @@ function Bookedit({keybook, nameEdit, authorEdit, languageEdit, totalEdit, remai
                                 onChange={(e) => setName(e.target.value)}
                             />
                         </Form.Group>
-                        <Form.Group
-                            className="mb-3"
-                        // controlId="exampleForm.ControlInput2"
-                        >
+                        <Form.Group className="mb-3">
                             <Form.Label>Author</Form.Label>
                             <Form.Control
                                 type="text"
@@ -80,16 +69,12 @@ function Bookedit({keybook, nameEdit, authorEdit, languageEdit, totalEdit, remai
                             <option >Portuguese</option>
                         </Form.Select>
                         <Row className="mb-3">
-                            <Form.Group as={Col} md="6"
-                            //  controlId="validationCustom01"
-                            >
+                            <Form.Group as={Col} md="6">
                                 <Form.Label>Total Copies</Form.Label>
                                 <Form.Control type="number" placeholder="5" name="total" value={total}
                                     onChange={(e) => setTotal(e.target.value)} />
                             </Form.Group>
-                            <Form.Group as={Col} md="6"
-                            //  controlId="validationCustom02"
-                            >
+                            <Form.Group as={Col} md="6">
                                 <Form.Label>Remaining</Form.Label>
                                 <Form.Control type="number" placeholder="2" name="remaining" value={remaining}
                                     onChange={(e) => setRemaining(e.target.value)} />

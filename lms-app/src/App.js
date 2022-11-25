@@ -1,18 +1,23 @@
 import React, { useState, createContext, useEffect } from 'react'
-import LoginForm from './components/LoginForm'
+import { useNavigate } from 'react-router-dom';
 import {
-  BrowserRouter as Router,
+  // BrowserRouter as Router,
   Route,
   Routes
 } from "react-router-dom";
-import Dashboard from './Dashboard/Dashboard';
+import { ToastContainer, toast } from 'react-toastify';
+import 'react-toastify/dist/ReactToastify.css'
+import LoginForm from './components/LoginForm'
+// import Dashboard from './Dashboard/Dashboard';
 import Issuedbooks from './Dashboard/Issuedbooks';
 import Students from './Dashboard/Students';
 import Allbooks from './Dashboard/Allbooks';
+import View from './Dashboard/View';
 
 const BookContext = createContext();
 const StudentContext = createContext()
 const IssueContext = createContext()
+
 const getStudent = () => {
   const student = localStorage.getItem('student')
   if (student) {
@@ -31,16 +36,19 @@ const getBook = () => {
 }
 const getIssue = () => {
   const issue = localStorage.getItem('issue')
-  if(issue){
+  if (issue) {
     return JSON.parse(localStorage.getItem('issue'))
   } else {
-  return []
+    return []
   }
 }
+
 function App() {
   const [book, setBook] = useState(getBook());
   const [student, setStudent] = useState(getStudent())
   const [issue, setIssue] = useState(getIssue())
+  const navigate = useNavigate()
+
   // const regEx = /^[A-Z0-9._%+-]+@[A-Z0-9.-]+\.[A-Z]{2,4}$/i;
   useEffect(() => {
     localStorage.setItem('book', JSON.stringify(book))
@@ -56,26 +64,43 @@ function App() {
   const [error, setError] = useState(false)
   const [check, setCheck] = useState(false);
   const Login = details => {
-    console.log(details)
     if (details.email === adminUser.email && details.password === adminUser.password) {
-      console.log("logged in")
       setCheck(true)
       setUser({
         email: details.email,
         password: details.password
       })
-      alert("Logged in successfully")
-    } else {
-      console.log("details not match")
-      alert("Invalid username or password!")
       setError(true)
+      navigate("/Issuedbooks")
+      toast.success('Login successfully', {
+        position: "top-right",
+        autoClose: 1000,
+        hideProgressBar: false,
+        closeOnClick: true,
+        pauseOnHover: true,
+        draggable: true,
+        progress: undefined,
+        theme: "light"
+      })
+    } else {
+      setError(true)
+      toast.error('Invalid username or password', {
+        position: "top-right",
+        autoClose: 1000,
+        hideProgressBar: false,
+        closeOnClick: true,
+        pauseOnHover: true,
+        draggable: true,
+        progress: undefined,
+        theme: "light"
+      })
     }
   }
 
   return (
     <div>
       <BookContext.Provider value={[book, setBook]}><StudentContext.Provider value={[student, setStudent]}><IssueContext.Provider value={[issue, setIssue]}>
-        <Router>
+        {/* <Router>
           {!check && (
             <LoginForm
               Login={Login} error={error}
@@ -92,8 +117,16 @@ function App() {
               <Route path="/students" element={check && <Students />} />
             </Routes>
           </div>
-        </Router>
+        </Router> */}
+        <Routes>
+          <Route path='/' element= {<LoginForm Login={Login} error={error} check={check} setCheck={setCheck}/> } />
+          <Route path='/issuedbooks' element= {<Issuedbooks/> } />
+          <Route path='/allbooks' element= {<Allbooks/> } />
+          <Route path='/students' element= {<Students/> } />
+          <Route path='/students/view' element= {<View/> } />
+        </Routes>
       </IssueContext.Provider></StudentContext.Provider></BookContext.Provider>
+      <ToastContainer />
     </div>
   )
 }

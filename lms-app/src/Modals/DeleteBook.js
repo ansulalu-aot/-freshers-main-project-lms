@@ -4,18 +4,13 @@ import Modal from 'react-bootstrap/Modal';
 import { TbTrash } from 'react-icons/tb';
 import { BookContext } from '../App';
 
-function Delete({keybook}) {
+function Delete({ keybook }) {
     const [show, setShow] = useState(false);
-
     const handleClose = () => setShow(false);
     const handleShow = () => setShow(true);
-
     const [book, setBook] = useContext(BookContext)
-    
     const handleDelete = () => {
-        console.log(keybook)
         setBook(book.filter((book) => book.bookid !== keybook))
-        // alert("Deleted...")
     }
 
     return (

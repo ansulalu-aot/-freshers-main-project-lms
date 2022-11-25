@@ -9,18 +9,17 @@ import { StudentContext } from '../App';
 
 function Issuemodal() {
     const [show, setShow] = useState(false);
-
     const handleClose = () => setShow(false);
     const handleShow = () => setShow(true);
-
-    // const [array2, setArray2] = useState([{ book: "", student: "", issue: "", due: ""}])
     const [books, setBooks] = useState("")
     const [students, setStudents] = useState("")
     const [issues, setIssues] = useState("")
     const [due, setDue] = useState("")
-    const [book ] = useContext(BookContext)
-    const [student ] = useContext(StudentContext)
+    const [bookReturn]= useState("")
+    const [book, setBook] = useContext(BookContext)
+    const [student] = useContext(StudentContext)
     const [issue, setIssue] = useContext(IssueContext)
+
     const handleSubmit = () => {
         const newIssue = {
             issueid: nanoid(),
@@ -30,17 +29,26 @@ function Issuemodal() {
             due: due,
         }
         setIssue([...issue, newIssue])
-        console.log(issue, newIssue)
         setBooks("")
         setStudents("")
         setIssues("")
         setDue("")
-        // alert("Issued")
+    }
+
+    const bookIssueRemaining = () => {
+        const remain = book.map((index) => {
+            if (index.name !== bookReturn) {
+                console.log(index.bookid)
+                index.remaining--
+            }
+            return (index)
+        })
+        setBook(remain)
     }
 
     return (
         <>
-            <Button className='button1' onClick={handleShow}>
+            <Button className='button1' onClick= {handleShow}>
                 Issue Book
             </Button>
 
@@ -66,10 +74,7 @@ function Issuemodal() {
                             })}
                         </Form.Select>
 
-                        <Form.Group
-                            className="mb-3"
-                            controlId="exampleForm.ControlDate1"
-                        >
+                        <Form.Group className="mb-3">
                             <Form.Label>Issue Date</Form.Label>
                             <Form.Control
                                 type="date"
@@ -77,10 +82,7 @@ function Issuemodal() {
                                 onChange={(e) => setIssues(e.target.value)}
                             />
                         </Form.Group>
-                        <Form.Group
-                            className="mb-3"
-                            controlId="exampleForm.ControlDate2"
-                        >
+                        <Form.Group className="mb-3">
                             <Form.Label>Due Date</Form.Label>
                             <Form.Control
                                 type="date"
@@ -94,7 +96,7 @@ function Issuemodal() {
                     <Button className='button2' onClick={handleClose}>
                         Cancel
                     </Button>
-                    <Button className='button3' onClick={() => { handleClose(); handleSubmit() }}>
+                    <Button className='button3' onClick={() => { handleClose(); handleSubmit(); bookIssueRemaining();}}>
                         Issue Book
                     </Button>
                 </Modal.Footer>

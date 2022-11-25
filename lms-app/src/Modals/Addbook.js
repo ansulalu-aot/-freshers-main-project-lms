@@ -9,11 +9,8 @@ import { nanoid } from 'nanoid'
 
 function Addmodal() {
     const [show, setShow] = useState(false);
-
     const handleClose = () => { setShow(false); setError(false) }
     const handleShow = () => setShow(true);
-
-    // const [array, setArray] = useState([{bookid:"", name: "", author: "", language: "", total: "", remaining: "" }])
     const [name, setName] = useState("")
     const [author, setAuthor] = useState("")
     const [language, setLanguage] = useState("")
@@ -21,6 +18,7 @@ function Addmodal() {
     const [remaining, setRemaining] = useState("")
     const [book, setBook] = useContext(BookContext)
     const [error, setError] = useState(false)
+
     const handleSubmit = () => {
         const newBook = {
             bookid: nanoid(),
@@ -35,7 +33,6 @@ function Addmodal() {
             handleShow()
         } else {
             setBook([...book, newBook])
-            console.log(book, newBook)
             setName("")
             setAuthor("")
             setLanguage("")
@@ -43,7 +40,6 @@ function Addmodal() {
             setRemaining("")
             setError(false)
         }
-        // alert("Book added")
     }
 
     return (
@@ -58,9 +54,7 @@ function Addmodal() {
                 </Modal.Header>
                 <Modal.Body>
                     <Form>
-                        <Form.Group className="mb-3"
-                        // controlId="exampleForm.ControlInput2"
-                        >
+                        <Form.Group className="mb-3">
                             <Form.Label>Name</Form.Label>
                             <Form.Control
                                 type="text"
@@ -71,10 +65,7 @@ function Addmodal() {
                             />
                             {error && name.length === 0 ? <label style={{ color: "red" }} >Can't be empty </label> : ""}
                         </Form.Group>
-                        <Form.Group
-                            className="mb-3"
-                        // controlId="exampleForm.ControlInput2"
-                        >
+                        <Form.Group className="mb-3">
                             <Form.Label>Author</Form.Label>
                             <Form.Control
                                 type="text"
@@ -93,21 +84,15 @@ function Addmodal() {
                         </Form.Select>
                         {error && language.length === 0 ? <label style={{ color: "red" }} >Can't be empty </label> : ""}
                         <Row className="mb-3">
-                            <Form.Group as={Col} md="6"
-                            //  controlId="validationCustom01"
-                            >
+                            <Form.Group as={Col} md="6">
                                 <Form.Label>Total Copies</Form.Label>
                                 <Form.Control type="number" placeholder="5" name="total" value={total} required
                                     onChange={(e) => setTotal(e.target.value)} />
-                                {/* { error&& total.length === 0 ? <label style={{color: "red"}} >Can't be empty </label>  : ""} */}
                             </Form.Group>
-                            <Form.Group as={Col} md="6"
-                            //  controlId="validationCustom02"
-                            >
+                            <Form.Group as={Col} md="6" >
                                 <Form.Label>Remaining</Form.Label>
                                 <Form.Control type="number" placeholder="2" name="remaining" value={remaining} required
                                     onChange={(e) => setRemaining(e.target.value)} />
-                                {/* { error && remaining.length === 0 ? <label style={{color: "red"}} >Can't be empty </label>  : ""} */}
                             </Form.Group>
                         </Row>
                     </Form>

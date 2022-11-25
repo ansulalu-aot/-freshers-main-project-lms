@@ -2,14 +2,10 @@ import React, { useState } from 'react'
 import Lmsheader2 from "./Vector (1).png"
 
 function LoginForm({ Login, error }) {
-    // const [error, setError] = useState(false)
     const [details, setDetails] = useState({ email: "", password: "" })
     const submitHandler = (e) => {
         e.preventDefault()
         Login(details)
-        // if(details.email.length === 0 || details.password.length === 0){
-        //     setError(true)
-        // }
     }
     return (
         <>
@@ -25,7 +21,6 @@ function LoginForm({ Login, error }) {
                         <a href='/Admin' style={{ textDecoration: "none" }}>Admin</a>
                         <a href='/Student' style={{ textDecoration: "none" }}>Student</a>
                     </div>
-                    {/* {(error !== "") ? (<div className='error'>{error}</div>) : ""} */}
                     <div className='form-group'>
                         <label htmlFor='email'>Email</label>
                         <input type="email" name='email' id='email' placeholder="Enter your email" onChange={(e) => setDetails({ ...details, email: e.target.value })} value={details.email} />
@@ -39,6 +34,7 @@ function LoginForm({ Login, error }) {
                     <input type='submit' value="Login" />
                 </div>
             </form>
+            
         </>
     )
 }
