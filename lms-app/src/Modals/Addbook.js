@@ -22,6 +22,7 @@ function Addmodal() {
     const handleSubmit = () => {
         const newBook = {
             bookid: nanoid(),
+            bookTitleId: nanoid(),
             name: name,
             author: author,
             language: language,

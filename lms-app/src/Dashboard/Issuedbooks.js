@@ -1,4 +1,4 @@
-import React, { useContext, useState } from 'react'
+import React, { useContext } from 'react'
 import Table from 'react-bootstrap/Table';
 import Returnbook from '../Modals/Return';
 import Issuemodal from '../Modals/Issuebook';
@@ -7,22 +7,18 @@ import { IssueContext, BookContext } from '../App';
 
 function Issuedbooks() {
     const [issue] = useContext(IssueContext)
-    const [book, setBook] = useContext(BookContext)
-    const [bookReturn, setBookReturn] = useState("")
+    const [book ] = useContext(BookContext)
     // const [fine, setFine] = useState("")
-    // remaining incrementing on return
-    const bookReturnRemaining = () => {
-        const remain = book.map((index) => {
-            if (index.name === bookReturn) {
-                console.log(index.bookid)
-                index.remaining++
-            }
-            return (index)
-        })
-        setBook(remain)
-    }
-
-    
+    // fine calculating
+    // const bookFine = () => {
+    //     const currentDate = new Date()
+    //     const dueDate = {due}
+    //     const dateDiff = Math.round((currentDate.getTime() - new Date(dueDate)) / (1000*3600*24))
+    //     setFine(Math.round(dateDiff*10))
+    //     if(fine < 0){
+    //         setFine("-")
+    //     }
+    // }
 
     return (
         <>
@@ -50,16 +46,24 @@ function Issuedbooks() {
                             return (
                                 <tbody key={index.issueid}>
                                     <tr>
-                                        <td>{index.books}</td>
+                                        {book.map((item) => {
+                                        // console.log(index.books)
+                                        //console.log(item.bookTitleId)
+                                            if (index.books === item.bookTitleId) {
+                                                return (
+                                                <td>{item.name}</td>
+                                                )
+    
+                                            }
+                                            
+                                        })}
                                         <td>{index.students}</td>
                                         <td>{index.issues}</td>
                                         <td>{index.due}</td>
                                         <td>10</td>
                                         <td><Returnbook
-                                            keyissue={index.books}
-                                            bookReturnRemaining={bookReturnRemaining}
-                                            setBookReturn={setBookReturn}
-                                            issueid={index.issueid} />
+                                            issueTitle={index.books}
+                                            issueBooks={index.issueid} />
                                         </td>
                                     </tr>
                                 </tbody>

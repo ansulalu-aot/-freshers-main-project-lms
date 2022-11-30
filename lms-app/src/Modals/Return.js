@@ -2,21 +2,31 @@ import React, { useState, useContext } from 'react';
 import Button from 'react-bootstrap/Button';
 import Modal from 'react-bootstrap/Modal';
 import { MdOutlineAssignmentReturn } from "react-icons/md";
-import { IssueContext } from '../App';
+import { BookContext, IssueContext } from '../App';
 
-function Returnbook({ bookReturnRemaining, keyissue, setBookReturn, issueid }) {
+function Returnbook({issueTitle, issueBooks}) {
+    let remain
     const [show, setShow] = useState(false);
     const handleClose = () => setShow(false);
     const handleShow = () => setShow(true);
     const [issue, setIssue] = useContext(IssueContext)
+    const [book] = useContext(BookContext)
 
+    const bookReturnRemaining = () => {
+        remain = book.map((index) => {
+            if (index.bookTitleId === issueTitle) {
+                index.remaining++
+            }
+            return (remain)
+        })
+    }
     const handleDelete = () => {
-        setIssue(issue.filter((issue) => issue.issueid !== issueid))
+        setIssue(issue.filter((issue) => issue.issueid !== issueBooks))
     }
 
     return (
         <>
-            <MdOutlineAssignmentReturn className='edit' onClick={() => {handleShow(); setBookReturn(keyissue)}}/>
+            <MdOutlineAssignmentReturn className='edit' onClick={() => {handleShow();}}/>
             <Modal show={show} onHide={handleClose}>
                 <Modal.Header className='border border-0' closeButton>
                     <Modal.Title style={{ paddingLeft: "150px" }}>Mark as returned</Modal.Title>

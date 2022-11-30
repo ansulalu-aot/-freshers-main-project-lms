@@ -7,11 +7,13 @@ import { StudentContext } from '../App';
 import Studentedit from '../Modals/Studentedit';
 import DeleteStudent from '../Modals/DeleteStudent';
 import Dashboard from './Dashboard';
+import { useNavigate } from 'react-router';
 // import { Routes, Route } from 'react-router';
 
 function Student() {
     const [student,] = useContext(StudentContext)
     const [search, setSearch] = useState("")
+    const navigate = useNavigate()
     return (
         <>
             <div className='d-flex col'>
@@ -54,7 +56,10 @@ function Student() {
                                                 confirmEdit={index.confirm}
                                             />
                                             <DeleteStudent keystudent={index.studentid} />
-                                            <GrView className='edit' />
+                                            <GrView className='edit'
+                                             onClick = {() =>{
+                                                navigate("/students/view")
+                                              }} />
                                             {/* <Routes><Route path="view" element="{ <View/> }">
                                         <View/>
                                         </Route></Routes> */}

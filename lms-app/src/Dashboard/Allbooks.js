@@ -44,7 +44,7 @@ function Allbooks() {
                                 return (
                                     <tbody key={index.bookid}>
                                         <tr>
-                                            <td>{index.name}</td>
+                                            <td key={index.bookTitleId}>{index.name}</td>
                                             <td>{index.author}</td>
                                             <td>{index.language}</td>
                                             <td>{index.total}</td>

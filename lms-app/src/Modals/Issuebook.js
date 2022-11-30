@@ -8,6 +8,7 @@ import { BookContext } from '../App';
 import { StudentContext } from '../App';
 
 function Issuemodal() {
+    let remain
     const [show, setShow] = useState(false);
     const handleClose = () => setShow(false);
     const handleShow = () => setShow(true);
@@ -15,8 +16,7 @@ function Issuemodal() {
     const [students, setStudents] = useState("")
     const [issues, setIssues] = useState("")
     const [due, setDue] = useState("")
-    const [bookReturn]= useState("")
-    const [book, setBook] = useContext(BookContext)
+    const [book] = useContext(BookContext)
     const [student] = useContext(StudentContext)
     const [issue, setIssue] = useContext(IssueContext)
 
@@ -36,14 +36,12 @@ function Issuemodal() {
     }
 
     const bookIssueRemaining = () => {
-        const remain = book.map((index) => {
-            if (index.name !== bookReturn) {
-                console.log(index.bookid)
+        remain = book.map((index) => {
+            if (index.bookTitleId === books) {
                 index.remaining--
             }
-            return (index)
+            return (remain)
         })
-        setBook(remain)
     }
 
     return (
@@ -62,7 +60,7 @@ function Issuemodal() {
                         <Form.Select className="mb-3" aria-label="Default select example1" value={books} onChange={(e) => setBooks(e.target.value)}>
                             <option>Select Book</option>
                             {book.map((item) => {
-                                return <option>{item.name}</option>
+                                return <option value={item.bookTitleId}>{item.name}</option>
                             })}
                         </Form.Select>
 
@@ -96,7 +94,7 @@ function Issuemodal() {
                     <Button className='button2' onClick={handleClose}>
                         Cancel
                     </Button>
-                    <Button className='button3' onClick={() => { handleClose(); handleSubmit(); bookIssueRemaining();}}>
+                    <Button className='button3' onClick={() => { handleClose(); handleSubmit(); bookIssueRemaining()}}>
                         Issue Book
                     </Button>
                 </Modal.Footer>
