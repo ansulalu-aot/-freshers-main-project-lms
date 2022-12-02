@@ -78,7 +78,7 @@ input {
   border-bottom: 1px solid #E3E3E3;
 }
 
-.form-tab a {
+.form-tab p label {
   font-weight: 500;
   font-size: 14px;
   line-height: 17px;
@@ -88,6 +88,14 @@ input {
 
 .sidebar {
   background: #ED7966;
+  color: #fff;
+  height: 100vh;
+  transition: all 0.5s;
+  overflow: hidden;
+}
+
+.sidebar2 {
+  background: #303179;
   color: #fff;
   height: 100vh;
   transition: all 0.5s;
@@ -158,4 +166,9 @@ Table thead tr th {
 
 Table {
   background: #FFFFFF;
+}
+
+.container2 {
+  width: 100%;
+  background: #FBFBFF;
 }

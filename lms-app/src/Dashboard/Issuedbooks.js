@@ -1,13 +1,14 @@
 import React, { useContext } from 'react'
 import Table from 'react-bootstrap/Table';
-import Returnbook from '../Modals/Return';
-import Issuemodal from '../Modals/Issuebook';
+import Returnbook from '../ModalsAdmin/Return';
+import Issuemodal from '../ModalsAdmin/Issuebook';
 import Dashboard from './Dashboard';
-import { IssueContext, BookContext } from '../App';
+import { IssueContext, BookContext, StudentContext } from '../App';
 
 function Issuedbooks() {
     const [issue] = useContext(IssueContext)
     const [book ] = useContext(BookContext)
+    const [student] = useContext(StudentContext)
     // const [fine, setFine] = useState("")
     // fine calculating
     // const bookFine = () => {
@@ -47,17 +48,19 @@ function Issuedbooks() {
                                 <tbody key={index.issueid}>
                                     <tr>
                                         {book.map((item) => {
-                                        // console.log(index.books)
-                                        //console.log(item.bookTitleId)
                                             if (index.books === item.bookTitleId) {
                                                 return (
                                                 <td>{item.name}</td>
                                                 )
-    
-                                            }
-                                            
+                                            }   
                                         })}
-                                        <td>{index.students}</td>
+                                        {student.map((item) => {
+                                            if (index.students === item.studentTitleId) {
+                                                return (
+                                                <td>{item.name}</td>
+                                                )
+                                            }   
+                                        })}
                                         <td>{index.issues}</td>
                                         <td>{index.due}</td>
                                         <td>10</td>

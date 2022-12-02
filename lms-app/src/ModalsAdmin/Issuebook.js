@@ -68,7 +68,7 @@ function Issuemodal() {
                         <Form.Select className="mb-3" aria-label="Default select example2" value={students} onChange={(e) => setStudents(e.target.value)}>
                             <option>Select Student</option>
                             {student.map((item) => {
-                                return <option>{item.name}</option>
+                                return <option value={item.studentTitleId}>{item.name}</option>
                             })}
                         </Form.Select>
 

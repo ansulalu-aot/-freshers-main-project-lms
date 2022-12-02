@@ -20,6 +20,7 @@ function AddStudent() {
     const handleSubmit = () => {
         const newStudent = {
             studentid: nanoid(),
+            studentTitleId: nanoid(),
             name: name,
             email: email,
             password: password,

@@ -1,18 +1,17 @@
 import React, { useState, createContext, useEffect } from 'react'
-import { useNavigate } from 'react-router-dom';
 import {
-  // BrowserRouter as Router,
   Route,
   Routes
 } from "react-router-dom";
-import { ToastContainer, toast } from 'react-toastify';
+import { ToastContainer} from 'react-toastify';
 import 'react-toastify/dist/ReactToastify.css'
 import LoginForm from './components/LoginForm'
-// import Dashboard from './Dashboard/Dashboard';
 import Issuedbooks from './Dashboard/Issuedbooks';
 import Students from './Dashboard/Students';
 import Allbooks from './Dashboard/Allbooks';
 import View from './Dashboard/View';
+import Mybooks from './Dashboard/Mybooks';
+import Studentallbooks from './Dashboard/Studentallbooks';
 
 const BookContext = createContext();
 const StudentContext = createContext()
@@ -47,7 +46,6 @@ function App() {
   const [book, setBook] = useState(getBook());
   const [student, setStudent] = useState(getStudent())
   const [issue, setIssue] = useState(getIssue())
-  const navigate = useNavigate()
 
   // const regEx = /^[A-Z0-9._%+-]+@[A-Z0-9.-]+\.[A-Z]{2,4}$/i;
   useEffect(() => {
@@ -56,74 +54,58 @@ function App() {
     localStorage.setItem('issue', JSON.stringify(issue))
   }, [book, student, issue])
 
-  const adminUser = {
-    email: "admin@gmail.com",
-    password: "admin123"
-  }
-  const [, setUser] = useState({ email: "", password: "" })
-  const [error, setError] = useState(false)
-  const [check, setCheck] = useState(false);
-  const Login = details => {
-    if (details.email === adminUser.email && details.password === adminUser.password) {
-      setCheck(true)
-      setUser({
-        email: details.email,
-        password: details.password
-      })
-      setError(true)
-      navigate("/Issuedbooks")
-      toast.success('Login successfully', {
-        position: "top-right",
-        autoClose: 1000,
-        hideProgressBar: false,
-        closeOnClick: true,
-        pauseOnHover: true,
-        draggable: true,
-        progress: undefined,
-        theme: "light"
-      })
-    } else {
-      setError(true)
-      toast.error('Invalid username or password', {
-        position: "top-right",
-        autoClose: 1000,
-        hideProgressBar: false,
-        closeOnClick: true,
-        pauseOnHover: true,
-        draggable: true,
-        progress: undefined,
-        theme: "light"
-      })
-    }
-  }
+  // const adminUser = {
+  //   email: "admin@gmail.com",
+  //   password: "admin123"
+  // }
+  // const [, setUser] = useState({ email: "", password: "" })
+  // const [error, setError] = useState(false)
+  // const [check, setCheck] = useState(false);
+  // const Login = details => {
+  //   if (details.email === adminUser.email && details.password === adminUser.password) {
+  //     setCheck(true)
+  //     setUser({
+  //       email: details.email,
+  //       password: details.password
+  //     })
+  //     setError(true)
+  //     navigate("/Issuedbooks")
+  //     toast.success('Login successfully', {
+  //       position: "top-right",
+  //       autoClose: 1000,
+  //       hideProgressBar: false,
+  //       closeOnClick: true,
+  //       pauseOnHover: true,
+  //       draggable: true,
+  //       progress: undefined,
+  //       theme: "light"
+  //     })
+  //   } else {
+  //     setError(true)
+  //     toast.error('Invalid username or password', {
+  //       position: "top-right",
+  //       autoClose: 1000,
+  //       hideProgressBar: false,
+  //       closeOnClick: true,
+  //       pauseOnHover: true,
+  //       draggable: true,
+  //       progress: undefined,
+  //       theme: "light"
+  //     })
+  //   }
+  // }
 
   return (
     <div>
       <BookContext.Provider value={[book, setBook]}><StudentContext.Provider value={[student, setStudent]}><IssueContext.Provider value={[issue, setIssue]}>
-        {/* <Router>
-          {!check && (
-            <LoginForm
-              Login={Login} error={error}
-              check={check}
-              setCheck={setCheck}
-            />
-          )}
-
-          <div className="d-flex">
-            {check && <Dashboard />}
-            <Routes>
-              <Route path="/issuedbooks" element={check && <Issuedbooks />} />
-              <Route path="/allbooks" element={check && <Allbooks />} />
-              <Route path="/students" element={check && <Students />} />
-            </Routes>
-          </div>
-        </Router> */}
         <Routes>
-          <Route path='/' element= {<LoginForm Login={Login} error={error} check={check} setCheck={setCheck}/> } />
-          <Route path='/issuedbooks' element= {<Issuedbooks/> } />
-          <Route path='/allbooks' element= {<Allbooks/> } />
-          <Route path='/students' element= {<Students/> } />
-          <Route path='/students/view' element= {<View/> } />
+          <Route path='/' element={<LoginForm  />} />
+          <Route path='/issuedbooks' element={<Issuedbooks />} />
+          <Route path='/allbooks' element={<Allbooks />} />
+          <Route path='/students' element={<Students />} />
+          <Route path='/students/:studentid' element={<View />} />
+          <Route path='/students/mybook' element={<Mybooks />} />
+          <Route path='/students/studentallbooks' element={<Studentallbooks />} />
         </Routes>
       </IssueContext.Provider></StudentContext.Provider></BookContext.Provider>
       <ToastContainer />

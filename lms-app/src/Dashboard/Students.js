@@ -2,10 +2,10 @@ import React, { useContext, useState } from 'react'
 import Table from 'react-bootstrap/Table';
 // import View from './View';
 import { GrView } from "react-icons/gr";
-import AddStudent from '../Modals/Addstudent';
+import AddStudent from '../ModalsAdmin/Addstudent';
 import { StudentContext } from '../App';
-import Studentedit from '../Modals/Studentedit';
-import DeleteStudent from '../Modals/DeleteStudent';
+import Studentedit from '../ModalsAdmin/Studentedit';
+import DeleteStudent from '../ModalsAdmin/DeleteStudent';
 import Dashboard from './Dashboard';
 import { useNavigate } from 'react-router';
 // import { Routes, Route } from 'react-router';
@@ -45,7 +45,7 @@ function Student() {
                             return (
                                 <tbody align="justify" key={index.studentid}>
                                     <tr>
-                                        <td>{index.name}</td>
+                                        <td key={index.nameid}>{index.name}</td>
                                         <td>{index.email}</td>
                                         <td className='d-flex gap-2  border-0'>
                                             <Studentedit
@@ -56,13 +56,10 @@ function Student() {
                                                 confirmEdit={index.confirm}
                                             />
                                             <DeleteStudent keystudent={index.studentid} />
-                                            <GrView className='edit'
+                                            <GrView
                                              onClick = {() =>{
-                                                navigate("/students/view")
+                                                navigate(`/students/${index.studentTitleId}`)
                                               }} />
-                                            {/* <Routes><Route path="view" element="{ <View/> }">
-                                        <View/>
-                                        </Route></Routes> */}
                                         </td>
                                     </tr>
                                 </tbody>
