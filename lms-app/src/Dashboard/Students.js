@@ -1,11 +1,11 @@
 import React, { useContext, useState } from 'react'
 import Table from 'react-bootstrap/Table';
 // import View from './View';
-import { GrView } from "react-icons/gr";
-import AddStudent from '../ModalsAdmin/Addstudent';
+import { AiOutlineEye } from "react-icons/ai";
+import AddStudent from '../Modals/Addstudent';
 import { StudentContext } from '../App';
-import Studentedit from '../ModalsAdmin/Studentedit';
-import DeleteStudent from '../ModalsAdmin/DeleteStudent';
+import Studentedit from '../Modals/Studentedit';
+import DeleteStudent from '../Modals/DeleteStudent';
 import Dashboard from './Dashboard';
 import { useNavigate } from 'react-router';
 // import { Routes, Route } from 'react-router';
@@ -56,7 +56,7 @@ function Student() {
                                                 confirmEdit={index.confirm}
                                             />
                                             <DeleteStudent keystudent={index.studentid} />
-                                            <GrView
+                                            <AiOutlineEye className='edit'
                                              onClick = {() =>{
                                                 navigate(`/students/${index.studentTitleId}`)
                                               }} />

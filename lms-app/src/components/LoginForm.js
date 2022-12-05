@@ -92,7 +92,7 @@ function LoginForm() {
                     <input type='submit' value="Login" />
                     <br />
                     {studentLogin && (
-                        <label className='py-3'>Don't have an account?{""}
+                        <label className='d-flex justify-content-center py-3 loginfoot' style={{color: "#646464"}}>Don't have an account? {""}
                         <a style={{ color: "#ED7966", textDecoration: "none" }} href="register"> Register</a></label>
                     )}
                 </div>

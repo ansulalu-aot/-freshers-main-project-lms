@@ -1,10 +1,10 @@
 import React, { useContext, useState } from 'react'
 import Table from 'react-bootstrap/Table';
 // import { TbTrash } from "react-icons/tb";
-import Bookedit from '../ModalsAdmin/Bookedit';
-import Addmodal from '../ModalsAdmin/Addbook';
+import Bookedit from '../Modals/Bookedit';
+import Addmodal from '../Modals/Addbook';
 import { BookContext } from '../App';
-import Delete from '../ModalsAdmin/DeleteBook';
+import Delete from '../Modals/DeleteBook';
 import Dashboard from './Dashboard';
 
 function Allbooks() {

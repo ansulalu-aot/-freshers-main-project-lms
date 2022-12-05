@@ -1,4 +1,4 @@
-import React, { useContext } from 'react'
+import React, { useState, useContext } from 'react'
 import Table from 'react-bootstrap/Table';
 import Dashboard from './Dashboard';
 import { IoIosArrowBack } from "react-icons/io";
@@ -8,6 +8,7 @@ import { BookContext, StudentContext, IssueContext } from '../App';
 import { nanoid } from "nanoid";
 
 function View() {
+  const [search, setSearch] = useState("")
   const navigate = useNavigate()
   const obj = useParams()
   const [book] = useContext(BookContext)
@@ -85,7 +86,7 @@ function View() {
             <h5>Issued Books</h5>
             <div className='search'>
               <input className="form-control my-2" style={{ width: "410px" }} type="search" placeholder="Search by book title or author" aria-label="Search"
-              //  onChange={(e) => { setSearch(e.target.value) }}
+                onChange={(e) => { setSearch(e.target.value) }}
               />
             </div>
             <Table hover>
@@ -100,22 +101,31 @@ function View() {
                     (Rs. 10 per day)</th>
                 </tr>
               </thead>
-              {tempStudent.map((index) => {
-                if (index.key === obj.studentid) {
-                  return (
-                    <tbody>
-                      <tr>
-                        <td>{index.book}</td>
-                        <td>{index.author}</td>
-                        <td>{index.issuedate}</td>
-                        <td>{index.duedate}</td>
-                        <td>-</td>
-                        <td>0</td>
-                      </tr>
-                    </tbody>
-                  )
-                }
-              })}
+              {tempStudent.filter((value) => {
+                if (search === "") {
+                  return value;
+                } else if (value.book.toLowerCase().includes(search.toLowerCase())) {
+                  return value
+                } else if (value.author.toLowerCase().includes(search.toLowerCase())) {
+                  return value
+                } return 0
+              })
+                .map((index) => {
+                  if (index.key === obj.studentid) {
+                    return (
+                      <tbody>
+                        <tr>
+                          <td>{index.book}</td>
+                          <td>{index.author}</td>
+                          <td>{index.issuedate}</td>
+                          <td>{index.duedate}</td>
+                          <td>-</td>
+                          <td>0</td>
+                        </tr>
+                      </tbody>
+                    )
+                  }
+                })}
             </Table>
           </div>
         </div>
