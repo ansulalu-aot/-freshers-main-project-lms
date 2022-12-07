@@ -47,7 +47,6 @@ function App() {
   const [student, setStudent] = useState(getStudent())
   const [issue, setIssue] = useState(getIssue())
 
-  // const regEx = /^[A-Z0-9._%+-]+@[A-Z0-9.-]+\.[A-Z]{2,4}$/i;
   useEffect(() => {
     localStorage.setItem('book', JSON.stringify(book))
     localStorage.setItem('student', JSON.stringify(student))
@@ -63,8 +62,8 @@ function App() {
           <Route path='/allbooks' element={<Allbooks />} />
           <Route path='/students' element={<Students />} />
           <Route path='/students/:studentid' element={<View />} />
-          <Route path='/students/mybook'  element={<Mybooks />} />
-          <Route path='/students/studentallbooks' element={<Studentallbooks />} />
+          <Route path='/students/mybook/:studentid'  element={<Mybooks />} />
+          <Route path='/students/studentallbooks/:studentid' element={<Studentallbooks />} />
         </Routes>
       </IssueContext.Provider></StudentContext.Provider></BookContext.Provider>
       <ToastContainer />

@@ -2,14 +2,15 @@ import React, { useState, useContext } from 'react';
 import Button from 'react-bootstrap/Button';
 import Modal from 'react-bootstrap/Modal';
 import { MdOutlineAssignmentReturn } from "react-icons/md";
-import { BookContext, IssueContext } from '../App';
+import { BookContext} from '../App';
+// import { IssueContext } from '../App';
 
 function Returnbook({ issueTitle, issueBooks, tempIssue }) {
     let remain
     const [show, setShow] = useState(false);
     const handleClose = () => setShow(false);
     const handleShow = () => setShow(true);
-    const [issue, setIssue] = useContext(IssueContext)
+    // const [issue, setIssue] = useContext(IssueContext)
     const [book] = useContext(BookContext)
 
     const bookReturnRemaining = () => {
@@ -23,13 +24,15 @@ function Returnbook({ issueTitle, issueBooks, tempIssue }) {
         })
     }
     const handleDelete = () => {
-        // for (let i = 0; i < tempIssue.length; i++) {
-        //     if (tempIssue[i].tempid === issueBooks) {
-        //         setIssue(tempIssue.filter(() => tempIssue[i].tempid !== issueBooks))
-        //         console.log(tempIssue[i].tempid, issueBooks)
-        //         // console.log(issueBooks)
-        //     }
-        // }
+        for (let i = 0; i < tempIssue.length; i++) {
+            if (tempIssue[i].tempid === issueBooks) {
+               tempIssue.filter((tempIssue) => tempIssue[i].tempid !== issueBooks)
+                console.log(tempIssue)
+                console.log(tempIssue[i].tempid, issueBooks)
+                // console.log(setIssue)
+                // console.log(issueBooks)
+            }
+        }
          // tempIssue.filter((tempIssue) => tempIssue[i].issueid !== issueBooks)
         // setIssue(tempIssue.filter((issue) => issue.tempid !== issueBooks))
         

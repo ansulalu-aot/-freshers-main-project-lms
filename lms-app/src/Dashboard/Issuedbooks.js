@@ -104,18 +104,6 @@ function Issuedbooks() {
     const [book] = useContext(BookContext)
     const [student] = useContext(StudentContext)
     const [search, setSearch] = useState("")
-    const [TempIssue, setTempIssue] = useState("")
-    // const [fine, setFine] = useState("")
-    // fine calculating
-    // const bookFine = () => {
-    //     const currentDate = new Date()
-    //     const dueDate = {due}
-    //     const dateDiff = Math.round((currentDate.getTime() - new Date(dueDate)) / (1000*3600*24))
-    //     setFine(Math.round(dateDiff*10))
-    //     if(fine < 0){
-    //         setFine("-")
-    //     }
-    // }
     const tempIssue = issue.map((item) => {
         let objStudent = {
             tempid: nanoid(),

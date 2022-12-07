@@ -6,10 +6,12 @@ import Lmsheader2 from "./Vector (1).png"
 
 function LoginForm() {
     const [details, setDetails] = useState({ email: "", password: "" })
+    // const [studentId , setStudentId] = useState("")
     const [studentLogin, setStudentLogin] = useState(false)
     const [student] = useContext(StudentContext)
     const [error, setError] = useState(false)
     const navigate = useNavigate()
+    //const regEx = /^[A-Z0-9._%+-]+@[A-Z0-9.-]+\.[A-Z]{2,4}$/i;
     const adminUser = {
         email: "admin@gmail.com",
         password: "admin123"
@@ -56,7 +58,8 @@ function LoginForm() {
     const loginStudent = () => {
         student.find((item) => {
             if (details.email === item.email && details.password === item.password) {
-                navigate("/students/mybook")
+                navigate(`/students/mybook/${item.studentTitleId}`)
+                // return(details.email = item.email, details.password = item.password, setStudentId = item.studentid)
             }
         })
     }
@@ -92,8 +95,8 @@ function LoginForm() {
                     <input type='submit' value="Login" />
                     <br />
                     {studentLogin && (
-                        <label className='d-flex justify-content-center py-3 loginfoot' style={{color: "#646464"}}>Don't have an account? {""}
-                        <a style={{ color: "#ED7966", textDecoration: "none" }} href="register"> Register</a></label>
+                        <label className='d-flex justify-content-center py-3 loginfoot' style={{ color: "#646464" }}>Don't have an account? {""}
+                            <a style={{ color: "#ED7966", textDecoration: "none" }} href="register"> Register</a></label>
                     )}
                 </div>
             </form>
